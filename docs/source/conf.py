@@ -3,6 +3,7 @@
 
 import datetime
 import os
+import re
 import sys
 from pathlib import Path
 
@@ -17,6 +18,56 @@ import hyperactive
 ON_READTHEDOCS = os.environ.get("READTHEDOCS") == "True"
 if not ON_READTHEDOCS:
     sys.path.insert(0, os.path.abspath("../.."))
+
+
+# -- Extract metadata from pyproject.toml ------------------------------------
+# This allows documentation to stay in sync with pyproject.toml automatically
+
+def extract_pyproject_metadata():
+    """Extract metadata from pyproject.toml for use in documentation."""
+    pyproject_path = Path(__file__).parent.parent.parent / "pyproject.toml"
+
+    metadata = {
+        "python_versions": [],
+        "min_python": "3.10",
+        "dependencies": [],
+        "version": hyperactive.__version__,
+    }
+
+    if pyproject_path.exists():
+        content = pyproject_path.read_text()
+
+        # Extract Python versions from classifiers
+        # Pattern: "Programming Language :: Python :: 3.XX"
+        py_version_pattern = r'"Programming Language :: Python :: (3\.\d+)"'
+        versions = re.findall(py_version_pattern, content)
+        if versions:
+            metadata["python_versions"] = sorted(set(versions))
+
+        # Extract requires-python
+        requires_python_match = re.search(r'requires-python\s*=\s*"([^"]+)"', content)
+        if requires_python_match:
+            req = requires_python_match.group(1)
+            # Extract minimum version from ">=3.10" or similar
+            min_match = re.search(r">=\s*([\d.]+)", req)
+            if min_match:
+                metadata["min_python"] = min_match.group(1)
+
+        # Extract core dependencies
+        deps_match = re.search(
+            r"dependencies\s*=\s*\[(.*?)\]", content, re.DOTALL
+        )
+        if deps_match:
+            deps_text = deps_match.group(1)
+            # Extract package names (first word before any version specifier)
+            dep_names = re.findall(r'"([a-zA-Z][a-zA-Z0-9_-]*)', deps_text)
+            metadata["dependencies"] = dep_names
+
+    return metadata
+
+
+# Extract metadata once at configuration time
+PYPROJECT_METADATA = extract_pyproject_metadata()
 
 # -- Project information -----------------------------------------------------
 current_year = datetime.datetime.now().year
@@ -311,3 +362,25 @@ todo_include_todos = False
 copybutton_prompt_text = r">>> |\.\.\. |\$ "
 copybutton_prompt_is_regexp = True
 copybutton_line_continuation_character = "\\"
+
+# -- RST Epilog: Make metadata available as substitutions in RST files -------
+# These can be used as |variable_name| in RST files
+
+# Build Python versions list dynamically
+_py_versions = PYPROJECT_METADATA["python_versions"]
+if _py_versions:
+    _py_versions_list = "\n".join(f"- Python {v}" for v in _py_versions)
+    _py_versions_inline = ", ".join(_py_versions)
+    _py_version_range = f"{_py_versions[0]} through {_py_versions[-1]}"
+else:
+    _py_versions_list = "- Python 3.10+"
+    _py_versions_inline = "3.10+"
+    _py_version_range = "3.10+"
+
+rst_epilog = f"""
+.. |version| replace:: {PYPROJECT_METADATA["version"]}
+.. |min_python| replace:: {PYPROJECT_METADATA["min_python"]}
+.. |python_versions_list| replace:: {_py_versions_inline}
+.. |python_version_range| replace:: {_py_version_range}
+.. |current_year| replace:: {current_year}
+"""

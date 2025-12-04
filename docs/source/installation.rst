@@ -4,7 +4,7 @@
 Installation
 ============
 
-Hyperactive can be installed via pip and supports Python 3.10 through 3.14.
+Hyperactive can be installed via pip and supports Python |python_version_range|.
 
 Installing Hyperactive
 ----------------------
@@ -167,15 +167,12 @@ After installation, verify that Hyperactive is working correctly:
 Python Version Support
 ----------------------
 
-Hyperactive officially supports:
-
-- Python 3.10
-- Python 3.11
-- Python 3.12
-- Python 3.13
-- Python 3.14 (with some optional dependency limitations)
+Hyperactive officially supports Python |python_versions_list|.
 
 .. note::
+
+   The supported Python versions are automatically extracted from the project's
+   ``pyproject.toml`` classifiers.
 
    Some optional integrations (sktime, PyTorch) may have more restrictive
    Python version requirements. Check the specific package documentation

@@ -1,19 +1,26 @@
 /* Custom CSS for Hyperactive documentation */
-/* Landing page styling for a mature, professional appearance */
+/* Purple/Violet theme matching the Hyperactive logo */
 
 /* ============================================
    CSS Variables for consistent theming
    ============================================ */
 :root {
-    --hyperactive-primary: #0eac92;
-    --hyperactive-secondary: #2077b4;
-    --hyperactive-accent: #4c9aff;
-    --hyperactive-dark: #1a1a2e;
+    /* Purple/violet colors from the Hyperactive logo */
+    --hyperactive-primary: #5D5D7A;
+    --hyperactive-secondary: #7070A0;
+    --hyperactive-accent: #8080B0;
+    --hyperactive-dark: #4A4A65;
     --hyperactive-light: #f8f9fa;
-    --hyperactive-gradient: linear-gradient(135deg, #0eac92 0%, #2077b4 100%);
-    --hyperactive-gradient-dark: linear-gradient(135deg, #0a8c76 0%, #1a5a8a 100%);
+    --hyperactive-gradient: linear-gradient(135deg, #5D5D7A 0%, #8080B0 100%);
+    --hyperactive-gradient-dark: linear-gradient(135deg, #4A4A65 0%, #6B6B8E 100%);
     --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     --card-shadow-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    /* Neutral separator color */
+    --separator-color: #dee2e6;
+}
+
+html[data-theme="dark"] {
+    --separator-color: #3d3d4d;
 }
 
 /* ============================================
@@ -180,11 +187,11 @@ html[data-theme="dark"] .algo-card {
 }
 
 .optuna-card {
-    border-left-color: #7c4dff !important;
+    border-left-color: var(--hyperactive-accent) !important;
 }
 
 .optuna-card:hover {
-    border-left-color: #651fff !important;
+    border-left-color: var(--hyperactive-primary) !important;
 }
 
 /* ============================================
@@ -303,7 +310,7 @@ html[data-theme="dark"] .algo-card {
 }
 
 .sd-tab-label:hover {
-    background-color: rgba(14, 172, 146, 0.1);
+    background-color: rgba(93, 93, 122, 0.1);
 }
 
 input[name^="sd-tab-set"]:checked + label {
@@ -312,36 +319,27 @@ input[name^="sd-tab-set"]:checked + label {
 }
 
 /* ============================================
-   Section Dividers
+   Section Separators - Full Width Horizontal Lines
    ============================================ */
 hr {
     border: none;
     height: 1px;
-    background: linear-gradient(90deg, transparent, #dee2e6, transparent);
+    background-color: var(--separator-color);
     margin: 2.5rem 0;
-}
-
-html[data-theme="dark"] hr {
-    background: linear-gradient(90deg, transparent, #3d3d4d, transparent);
+    width: 100%;
 }
 
 /* ============================================
-   Section Headers
+   Section Headers - Clean without decorative underlines
    ============================================ */
 h2 {
     position: relative;
-    padding-bottom: 0.5rem;
+    padding-bottom: 0;
 }
 
+/* Remove the short underline pseudo-element */
 h2::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 60px;
-    height: 3px;
-    background: var(--hyperactive-gradient);
-    border-radius: 2px;
+    display: none;
 }
 
 /* ============================================
@@ -356,7 +354,7 @@ h2::after {
 .sd-btn-primary:hover {
     background: var(--hyperactive-gradient-dark) !important;
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(14, 172, 146, 0.4);
+    box-shadow: 0 4px 12px rgba(93, 93, 122, 0.4);
 }
 
 /* ============================================
