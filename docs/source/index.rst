@@ -11,30 +11,25 @@
 
 .. raw:: html
 
-   <div class="maturity-banner">
-      <div class="maturity-items">
-         <div class="maturity-item">
-            <span class="maturity-icon">🔧</span>
-            <span class="maturity-text"><strong>Since 2019</strong></span>
-         </div>
-         <div class="maturity-item">
-            <span class="maturity-icon">🚀</span>
-            <span class="maturity-text"><strong>Version 5.0</strong></span>
-         </div>
-         <div class="maturity-item">
-            <span class="maturity-icon">🐍</span>
-            <span class="maturity-text"><strong>Python <span id="python-version-range"></span></strong></span>
-         </div>
-         <div class="maturity-item">
-            <span class="maturity-icon">📜</span>
-            <span class="maturity-text"><strong>MIT Licensed</strong></span>
-         </div>
+   <div class="badge-banner">
+      <div class="badge-items">
+         <a href="https://pypi.org/project/hyperactive/" target="_blank">
+            <img src="https://img.shields.io/pypi/v/hyperactive.svg?style=flat-square&color=5D5D7A" alt="PyPI Version" />
+         </a>
+         <a href="https://pypi.org/project/hyperactive/" target="_blank">
+            <img src="https://img.shields.io/pypi/pyversions/hyperactive.svg?style=flat-square&color=5D5D7A" alt="Python Versions" />
+         </a>
+         <a href="https://github.com/SimonBlanke/Hyperactive/blob/master/LICENSE" target="_blank">
+            <img src="https://img.shields.io/github/license/SimonBlanke/Hyperactive.svg?style=flat-square&color=5D5D7A" alt="License" />
+         </a>
+         <a href="https://github.com/SimonBlanke/Hyperactive" target="_blank">
+            <img src="https://img.shields.io/github/stars/SimonBlanke/Hyperactive?style=flat-square&color=5D5D7A" alt="GitHub Stars" />
+         </a>
+         <a href="https://gc-os-ai.github.io/" target="_blank">
+            <img src="https://img.shields.io/badge/GC.OS-Sponsored-0eac92.svg?style=flat-square" alt="GC.OS Sponsored" />
+         </a>
       </div>
    </div>
-   <script>
-      document.getElementById('python-version-range').textContent =
-         document.querySelector('meta[name="python-version-range"]').content;
-   </script>
 
 
 Hyperactive provides a collection of optimization algorithms, accessible through a unified
@@ -52,82 +47,69 @@ Why Hyperactive?
 
    .. grid-item-card::
       :class-card: feature-card
-      :text-align: center
 
-      .. raw:: html
-
-         <div class="feature-icon">⚡</div>
-
-      **20+ Optimization Algorithms**
+      **20 Optimization Algorithms**
       ^^^
-      From simple Hill Climbing to advanced Bayesian Optimization,
-      Particle Swarm, Genetic Algorithms, and more. Choose the right
-      algorithm for your problem.
+      From Hill Climbing to Bayesian Optimization,
+      Particle Swarm, Genetic Algorithms, and more.
+
+      +++
+      Local, global, population-based, and sequential methods.
 
    .. grid-item-card::
       :class-card: feature-card
-      :text-align: center
 
-      .. raw:: html
-
-         <div class="feature-icon">🔌</div>
-
-      **Seamless ML Integration**
+      **Direct ML Integration**
       ^^^
-      First-class support for scikit-learn, sktime, skpro, and PyTorch Lightning.
-      Tune your models with minimal code changes.
+      First-class support for scikit-learn, sktime, skpro, and PyTorch.
+      Tune models with minimal code changes.
+
+      +++
+      Works with any estimator implementing fit/score.
 
    .. grid-item-card::
       :class-card: feature-card
-      :text-align: center
-
-      .. raw:: html
-
-         <div class="feature-icon">🎯</div>
 
       **Experiment Abstraction**
       ^^^
       Clean separation between *what* to optimize (experiments) and
-      *how* to optimize (algorithms). Mix and match freely.
+      *how* to optimize (algorithms).
+
+      +++
+      Swap algorithms without changing experiment code.
 
    .. grid-item-card::
       :class-card: feature-card
-      :text-align: center
 
-      .. raw:: html
-
-         <div class="feature-icon">🔧</div>
-
-      **Multiple Backends**
+      **3 Optimizer Backends**
       ^^^
-      Native GFO implementations, Optuna integration, and scikit-learn
-      optimizers — all through the same unified API.
+      Native GFO algorithms, Optuna samplers, and scikit-learn
+      search methods through one unified API.
+
+      +++
+      GFO · Optuna · sklearn
 
    .. grid-item-card::
       :class-card: feature-card
-      :text-align: center
 
-      .. raw:: html
-
-         <div class="feature-icon">📊</div>
-
-      **Flexible Search Spaces**
+      **Mixed Parameter Spaces**
       ^^^
-      Discrete, continuous, and mixed parameter spaces. Define search
-      spaces naturally using NumPy arrays or lists.
+      Categorical, integer, and continuous parameters.
+      Define search spaces with NumPy arrays or lists.
+
+      +++
+      Optuna backend supports native continuous ranges.
 
    .. grid-item-card::
       :class-card: feature-card
-      :text-align: center
 
-      .. raw:: html
-
-         <div class="feature-icon">🏭</div>
-
-      **Production Ready**
+      **Stable Since 2019**
       ^^^
-      Battle-tested since 2019 with comprehensive test coverage,
-      active maintenance, and commercial sponsorship.
+      5+ years of development, comprehensive test coverage,
+      and active maintenance.
+
+      +++
+      Type-annotated · Documented · Tested
 
 ----
 
@@ -302,16 +284,6 @@ For additional integrations:
    # Or specific integrations
    pip install hyperactive[sklearn-integration]
    pip install hyperactive[sktime-integration]
-
-----
-
-.. raw:: html
-
-   <div class="sponsor-section">
-      <a href="https://gc-os-ai.github.io/" target="_blank">
-         <img src="https://img.shields.io/badge/GC.OS-Sponsored%20Project-orange.svg?style=for-the-badge&colorA=0eac92&colorB=2077b4" alt="GC.OS Sponsored" />
-      </a>
-   </div>
 
 ----
 
