@@ -196,7 +196,9 @@ class TorchExperiment(BaseExperiment):
             return val_result, metadata
 
         except Exception as e:
-            print(f"Training failed with params {lm_params}: {e}")
+            print(
+                f"Training failed (lm_params={lm_params}, dm_params={dm_params}): {e}"
+            )
             return np.float64(float("inf")), {}
 
     @classmethod
